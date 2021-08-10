@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ShareDemo/data/bean/joke_bean_entity.dart';
 import 'package:ShareDemo/generated/json/base/json_convert_content.dart';
+import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:dio/dio.dart';
 
 import 'net_callback.dart';
@@ -38,6 +39,7 @@ class NetManager with NetConfig {
 
     var response = await dio.get('/joke/content/list.php', data: data);
     var result = response.data.toString();
+    FZLog.d("result == " + result);
 
 //    var response = await dio.get(
 //        "http://v.juhe.cn/joke/content/list.php?key=c733ce5e333a4e3af6fb4e3223a3a9e2&page=1&pagesize=1&sort=asc&time=1418745237",

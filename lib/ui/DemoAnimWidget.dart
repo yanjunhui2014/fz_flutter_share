@@ -62,6 +62,12 @@ class DemoAnimLottieState extends State<DemoAnimWidget>
   AnimationController _lottieController;
 
   @override
+  void dispose() {
+    _lottieController?.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     _lottieController = AnimationController(vsync: this)
       ..value = 0.0
@@ -133,6 +139,12 @@ class DemoAnimSyatemState extends State<DemoAnimWidget>
   double screenWidth = 0.0;
 
   @override
+  void dispose() {
+    transAnimController?.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     transAnimController = AnimationController(
         duration: Duration(milliseconds: 3000), vsync: this);
@@ -194,4 +206,5 @@ class DemoAnimSyatemState extends State<DemoAnimWidget>
       ),
     );
   }
+
 }
