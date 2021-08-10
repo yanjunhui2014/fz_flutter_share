@@ -1,8 +1,3 @@
-# fz_flutter_share
+### 菲助科技2021分享-Flutter篇
 
-A new Flutter module.
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.dev/).
+分享大纲
