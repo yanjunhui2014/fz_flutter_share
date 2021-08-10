@@ -19,8 +19,9 @@ class DemoAnimWidget extends StatefulWidget {
       return DemoAnimGifState();
     } else if (type == type_lottie) {
       return DemoAnimLottieState();
+    } else {
+      return DemoAnimSyatemState();
     }
-    return null;
   }
 }
 
@@ -55,6 +56,7 @@ class DemoAnimGifState extends State<DemoAnimWidget> {
   }
 }
 
+///动画-lottie演示
 class DemoAnimLottieState extends State<DemoAnimWidget>
     with TickerProviderStateMixin {
   AnimationController _lottieController;
@@ -117,6 +119,78 @@ class DemoAnimLottieState extends State<DemoAnimWidget>
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+///动画-系统动画演示
+class DemoAnimSyatemState extends State<DemoAnimWidget>
+    with TickerProviderStateMixin {
+  AnimationController transAnimController;
+  double transAnimValue = 0.0;
+
+  double screenWidth = 0.0;
+
+  @override
+  void initState() {
+    transAnimController = AnimationController(
+        duration: Duration(milliseconds: 3000), vsync: this);
+    Animation<double> animation =
+        Tween(begin: 0.0, end: 1.0).animate(transAnimController);
+    animation.addListener(() {
+      setState(() {
+        transAnimValue = animation.value;
+      });
+    });
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        FZLog.d("TransAnim - completed");
+        transAnimController.reverse();
+      } else if (status == AnimationStatus.reverse) {
+        FZLog.d("TransAnim - reverse");
+      } else if (status == AnimationStatus.dismissed) {
+        FZLog.d("TransAnim - dismissed");
+        transAnimController.forward();
+      }
+    });
+    transAnimController.forward();
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (screenWidth == 0.0) {
+      screenWidth = MediaQuery.of(context).size.width;
+    }
+
+    return Scaffold(
+      appBar: AppBar(title: Text("系统动画")),
+      body: Stack(
+        children: <Widget>[
+          Container(
+            width: 74,
+            height: 64,
+            margin: EdgeInsets.only(left: (screenWidth - 74) * transAnimValue),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+              'assets/image/game_audio_listen_audio_flying_saucer.png',
+            ))),
+          ),
+          Container(
+              alignment: Alignment.center,
+              width: 304 * transAnimValue,
+              height: 388 * transAnimValue,
+              margin: EdgeInsets.only(
+                  top: 74 + 200 * transAnimValue, left: 200 * transAnimValue),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                'assets/image/after_class_plant_trees_tree_state_1.png',
+              )))),
+        ],
       ),
     );
   }

@@ -81,6 +81,7 @@ flutter:
   assets:
     - assets/gif/
     - assets/lottie/
+    - assets/image/
 
 
   # This section identifies your Flutter project as a module meant for
