@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ShareDemo/data/bean/ResponseForJoke.dart';
 import 'package:ShareDemo/data/bean/joke_bean_entity.dart';
 import 'package:ShareDemo/generated/json/base/json_convert_content.dart';
 import 'package:ShareDemo/utils/FZLog.dart';
@@ -50,6 +51,33 @@ class NetManager with NetConfig {
     if (map["error_code"] == 0) {
       JokeBeanResult result =
           JsonConvert.fromJsonAsT<JokeBeanResult>(map['result']);
+      netCallback.onSuccess(result);
+    } else {
+      netCallback.onFail(Exception(map["reason"]));
+    }
+  }
+
+  void queryJokeDataWithResponseForJoke(
+      NetCallback<ResponseForJokeResult> netCallback) async {
+    Dio dio = new Dio();
+    Options options = dio.options;
+    options.baseUrl = "http://v.juhe.cn";
+    options.responseType = ResponseType.PLAIN;
+
+    Map<String, dynamic> data = new Map<String, dynamic>();
+    data["key"] = 'c733ce5e333a4e3af6fb4e3223a3a9e2';
+    data["page"] = '2';
+    data["pagesize"] = '10';
+    data["sort"] = 'asc';
+    data["time"] = '1418745237';
+
+    var response = await dio.get('/joke/content/list.php', data: data);
+    var result = response.data.toString();
+
+    Map<String, dynamic> map = jsonDecode(result);
+    if (map["error_code"] == 0) {
+      ResponseForJokeResult result =
+      ResponseForJokeResult.fromJson(map['result']);
       netCallback.onSuccess(result);
     } else {
       netCallback.onFail(Exception(map["reason"]));
