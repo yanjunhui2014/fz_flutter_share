@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-///跳转目标页
+///跳转演示目标页
 class DemoNavigationTargetWidget extends StatefulWidget {
   final String pageFrom;
 
