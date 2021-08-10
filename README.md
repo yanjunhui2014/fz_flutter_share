@@ -1,2 +1,8 @@
-# FZFlutterShare
-Share demo for fz technology
+# fz_flutter_share
+
+A new Flutter module.
+
+## Getting Started
+
+For help getting started with Flutter, view our online
+[documentation](https://flutter.dev/).
