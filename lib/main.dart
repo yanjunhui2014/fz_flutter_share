@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ShareDemo/ui/DemoAnimWidget.dart';
 import 'package:ShareDemo/ui/DemoDebugWidget.dart';
 import 'package:ShareDemo/ui/DemoGustureWidget.dart';
 import 'package:ShareDemo/ui/DemoNetworkWidget.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   static const Router_DemoDebug = "demo/DemoDebugWidgetWidget";
   static const Router_DemoNetwork = "demo/DemoNetwork";
   static const Router_DemoGusture = "demo/DemoGusture";
+  static const Router_DemoAnim = "demo/DemoAnim";
 
 
   Map<String, WidgetBuilder> routers = {
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
         DemoNetworkWidget(),
     "$Router_DemoGusture": (BuildContext context) =>
         DemoGustureWidget(),
+    "$Router_DemoAnim": (BuildContext context) =>
+        DemoAnimWidget(1),
   };
 
   @override
@@ -73,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _itemButton("代码调试", MyApp.Router_DemoDebug),
             _itemButton("测试第三方sdk(网络请求)", MyApp.Router_DemoNetwork),
             _itemButton("手势学习", MyApp.Router_DemoGusture),
+            _itemButton("动画学习", MyApp.Router_DemoAnim),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -127,6 +132,58 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6),
                   child: const Text('push策略'),
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
+  Future<void> showAnimDialog(String routeName) async {
+    FZLog.d(" showAnimDialog ");
+    int i = await showDialog<int>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: const Text('请选动画方式'),
+            children: <Widget>[
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.of(context).pop();//必须在push之前调用，否则无法正常关闭对话框或正常跳转
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          DemoAnimWidget(DemoAnimWidget.type_gif)));
+                  // dismissDialog(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: const Text('gif动画'),
+                ),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          DemoAnimWidget(DemoAnimWidget.type_lottie)));
+                  // dismissDialog(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: const Text('lottie动画'),
+                ),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          DemoAnimWidget(DemoAnimWidget.type_system)));
+                  // dismissDialog(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: const Text('系统动画'),
                 ),
               ),
             ],

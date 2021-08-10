@@ -78,7 +78,9 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-#  assets:
+  assets:
+    - assets/gif/
+    - assets/lottie/
 
 
   # This section identifies your Flutter project as a module meant for
