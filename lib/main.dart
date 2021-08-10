@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ShareDemo/ui/DemoDebugWidget.dart';
+import 'package:ShareDemo/ui/DemoNetworkWidget.dart';
 import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   static const Router_DemoGrammarSugar = 'demo/DemoGrammarSugarWidget';
   static const Router_DemoNavigation = 'demo/DemoNavigationTargetWidget';
   static const Router_DemoDebug = "demo/DemoDebugWidgetWidget";
+  static const Router_DemoNetwork = "demo/DemoNetwork";
 
   Map<String, WidgetBuilder> routers = {
     "$Router_DemoGrammarSugar": (BuildContext context) =>
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
         DemoNavigationTargetWidget(pageFrom: "pushNamed路由策略"),
     "$Router_DemoDebug": (BuildContext context) =>
         DemoDebugWidgetWidget(),
+    "$Router_DemoNetwork": (BuildContext context) =>
+        DemoNetworkWidget(),
   };
 
   @override
@@ -57,11 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _itemButton('语法糖', MyApp.Router_DemoGrammarSugar),
             _itemButton('页面跳转', MyApp.Router_DemoNavigation),
             _itemButton("代码调试", MyApp.Router_DemoDebug),
+            _itemButton("测试第三方sdk(网络请求)", MyApp.Router_DemoNetwork),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
