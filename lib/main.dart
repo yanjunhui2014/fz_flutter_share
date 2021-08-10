@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ShareDemo/ui/DemoDebugWidget.dart';
+import 'package:ShareDemo/ui/DemoGustureWidget.dart';
 import 'package:ShareDemo/ui/DemoNetworkWidget.dart';
 import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
   static const Router_DemoNavigation = 'demo/DemoNavigationTargetWidget';
   static const Router_DemoDebug = "demo/DemoDebugWidgetWidget";
   static const Router_DemoNetwork = "demo/DemoNetwork";
+  static const Router_DemoGusture = "demo/DemoGusture";
+
 
   Map<String, WidgetBuilder> routers = {
     "$Router_DemoGrammarSugar": (BuildContext context) =>
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
         DemoDebugWidgetWidget(),
     "$Router_DemoNetwork": (BuildContext context) =>
         DemoNetworkWidget(),
+    "$Router_DemoGusture": (BuildContext context) =>
+        DemoGustureWidget(),
   };
 
   @override
@@ -67,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _itemButton('页面跳转', MyApp.Router_DemoNavigation),
             _itemButton("代码调试", MyApp.Router_DemoDebug),
             _itemButton("测试第三方sdk(网络请求)", MyApp.Router_DemoNetwork),
+            _itemButton("手势学习", MyApp.Router_DemoGusture),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
