@@ -89,7 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
       child: RaisedButton(
         onPressed: () {
           if (routeName == MyApp.Router_DemoNavigation) {
-            showNavigationDialog(MyApp.Router_DemoNavigation);
+            showNavigationDialog(routeName);
+          } if (routeName == MyApp.Router_DemoAnim) {
+            showAnimDialog();
           } else {
             Navigator.pushNamed(context, routeName);
           }
@@ -139,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  Future<void> showAnimDialog(String routeName) async {
+  Future<void> showAnimDialog() async {
     FZLog.d(" showAnimDialog ");
     int i = await showDialog<int>(
         context: context,

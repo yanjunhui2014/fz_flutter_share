@@ -1,5 +1,7 @@
+import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 ///Anim演示
 class DemoAnimWidget extends StatefulWidget {
@@ -15,6 +17,8 @@ class DemoAnimWidget extends StatefulWidget {
   State<StatefulWidget> createState() {
     if (type == type_gif) {
       return DemoAnimGifState();
+    } else if (type == type_lottie) {
+      return DemoAnimLottieState();
     }
     return null;
   }
@@ -44,6 +48,73 @@ class DemoAnimGifState extends State<DemoAnimWidget> {
               height: 150,
             ),
             Text("异常gif")
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DemoAnimLottieState extends State<DemoAnimWidget>
+    with TickerProviderStateMixin {
+  AnimationController _lottieController;
+
+  @override
+  void initState() {
+    _lottieController = AnimationController(vsync: this)
+      ..value = 0.0
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed ||
+            status == AnimationStatus.dismissed) {
+          FZLog.d('lottie 动画结束了');
+          _lottieController.forward(from: 0.001);
+        }
+      });
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Lottie动画")),
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Lottie.asset(
+              'assets/lottie/game_river_correct.json',
+              height: MediaQuery.of(context).size.width * 275 / 750,
+              width: MediaQuery.of(context).size.width * 271 / 750,
+              repeat: false,
+              fit: BoxFit.cover,
+              controller: _lottieController,
+              onLoaded: (composition) {
+                setState(() {
+                  _lottieController.value = 0.0;
+                  _lottieController.duration = composition.duration;
+                  _lottieController.forward(from: 0.001);
+                });
+              },
+            ),
+            Lottie.asset(
+              'assets/lottie/game_river_jump.json',
+              height: MediaQuery.of(context).size.width * 275 / 750,
+              width: MediaQuery.of(context).size.width * 271 / 750,
+              repeat: false,
+              fit: BoxFit.cover,
+              controller: _lottieController,
+            ),
+            Lottie.asset(
+              'assets/lottie/game_result_excellent.json',
+              height: MediaQuery.of(context).size.width * 275 / 750,
+              width: MediaQuery.of(context).size.width * 271 / 750,
+              repeat: false,
+              fit: BoxFit.cover,
+              controller: _lottieController,
+            ),
           ],
         ),
       ),
