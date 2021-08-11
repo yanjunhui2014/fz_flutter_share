@@ -1,42 +1,36 @@
-import 'package:ShareDemo/data/bean/joke_bean_entity.dart';
+import 'package:ShareDemo/data/bean/ResponseFromPluginEntity.dart';
 
-jokeBeanEntityFromJson(JokeBeanEntity data, Map<String, dynamic> json) {
+responseFromPluginEntityFromJson(ResponseFromPluginEntity data, Map<String, dynamic> json) {
 	if (json['reason'] != null) {
 		data.reason = json['reason'].toString();
 	}
 	if (json['result'] != null) {
-		data.result = JokeBeanResult().fromJson(json['result']);
-	}
-	if (json['error_code'] != null) {
-		data.errorCode = json['error_code'] is String
-				? int.tryParse(json['error_code'])
-				: json['error_code'].toInt();
+		data.result = ResponseFromPluginResult().fromJson(json['result']);
 	}
 	return data;
 }
 
-Map<String, dynamic> jokeBeanEntityToJson(JokeBeanEntity entity) {
+Map<String, dynamic> responseFromPluginEntityToJson(ResponseFromPluginEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['reason'] = entity.reason;
 	data['result'] = entity.result?.toJson();
-	data['error_code'] = entity.errorCode;
 	return data;
 }
 
-jokeBeanResultFromJson(JokeBeanResult data, Map<String, dynamic> json) {
+responseFromPluginResultFromJson(ResponseFromPluginResult data, Map<String, dynamic> json) {
 	if (json['data'] != null) {
-		data.data = (json['data'] as List).map((v) => JokeBeanResultData().fromJson(v)).toList();
+		data.data = (json['data'] as List).map((v) => ResponseFromPluginResultData().fromJson(v)).toList();
 	}
 	return data;
 }
 
-Map<String, dynamic> jokeBeanResultToJson(JokeBeanResult entity) {
+Map<String, dynamic> responseFromPluginResultToJson(ResponseFromPluginResult entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['data'] =  entity.data?.map((v) => v.toJson())?.toList();
 	return data;
 }
 
-jokeBeanResultDataFromJson(JokeBeanResultData data, Map<String, dynamic> json) {
+responseFromPluginResultDataFromJson(ResponseFromPluginResultData data, Map<String, dynamic> json) {
 	if (json['content'] != null) {
 		data.content = json['content'].toString();
 	}
@@ -54,7 +48,7 @@ jokeBeanResultDataFromJson(JokeBeanResultData data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> jokeBeanResultDataToJson(JokeBeanResultData entity) {
+Map<String, dynamic> responseFromPluginResultDataToJson(ResponseFromPluginResultData entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['content'] = entity.content;
 	data['hashId'] = entity.hashId;

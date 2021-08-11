@@ -1,4 +1,5 @@
 import 'package:ShareDemo/data/bean/ResponseForJoke.dart';
+import 'package:ShareDemo/data/bean/ResponseFromPluginEntity.dart';
 import 'package:ShareDemo/data/bean/joke_bean_entity.dart';
 import 'package:ShareDemo/net/net_callback.dart';
 import 'package:ShareDemo/net/net_manager.dart';
@@ -34,6 +35,11 @@ class DemoNetworkState extends State<DemoNetworkWidget> {
                 onPressed: () {
                   doGetByNetManagerWithResponseForJoke();
                 }),
+            RaisedButton(
+                child: Text("请求数据 - PluginEntity"),
+                onPressed: () {
+                  doGetByNetManagerWithResponseFromPluginEntity();
+                }),
             Text(text)
           ],
         ),
@@ -60,5 +66,16 @@ class DemoNetworkState extends State<DemoNetworkWidget> {
               });
             },
             onFail: (Exception e) {}));
+  }
+
+  void doGetByNetManagerWithResponseFromPluginEntity() {
+    NetManager.instance.queryJokeDataWithResponseFromPluginEntity(
+        new NetCallback<ResponseFromPluginResult>(
+            onSuccess: (response) {
+              setState(() {
+                text = response.data[count++ % 10].content;
+              });
+            },
+            onFail: (e) {}));
   }
 }
