@@ -4,6 +4,7 @@ import 'package:ShareDemo/ui/DemoAnimWidget.dart';
 import 'package:ShareDemo/ui/DemoCustomViewWidget.dart';
 import 'package:ShareDemo/ui/DemoDebugWidget.dart';
 import 'package:ShareDemo/ui/DemoGustureWidget.dart';
+import 'package:ShareDemo/ui/DemoLandscapeWidget.dart';
 import 'package:ShareDemo/ui/DemoNetworkWidget.dart';
 import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   static const Router_DemoGusture = "demo/DemoGusture";
   static const Router_DemoAnim = "demo/DemoAnim";
   static const Router_CustomView = "demo/RouterCustomView";
+  static const Router_Landscape = "demo/Landscape";
 
 
   Map<String, WidgetBuilder> routers = {
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
         DemoAnimWidget(1),
     "$Router_CustomView": (BuildContext context) =>
         DemoCustomViewWidget(),
+    "$Router_Landscape": (BuildContext context) =>
+        DemoLandscpeWidget(),
   };
 
   @override
@@ -83,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _itemButton("手势学习", MyApp.Router_DemoGusture),
             _itemButton("动画学习", MyApp.Router_DemoAnim),
             _itemButton("自定义view学习", MyApp.Router_CustomView),
+            _itemButton("进入横屏界面", MyApp.Router_Landscape),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

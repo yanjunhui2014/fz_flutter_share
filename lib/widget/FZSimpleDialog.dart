@@ -4,22 +4,37 @@ import 'package:flutter/material.dart';
 typedef SimpleDialogOnClickListener = void Function(int event);
 
 class FZSimpleDialog extends Dialog {
-  static int EVENT_CANCEL = 1;
-  static int EVENT_CONFIRM = 2;
+  static const EVENT_CANCEL = 1;
+  static const EVENT_CONFIRM = 2;
+
+  static const portrait = 1;
+  static const landscape = 2;
 
   final String mTitle;
   final String mMsg;
   final String mCancel;
   final String mConfirm;
+  final int orientation;
 
   final SimpleDialogOnClickListener mOnClickListener;
 
-  const FZSimpleDialog(this.mTitle, this.mMsg, {Key key, this.mOnClickListener, this.mCancel = "取消", this.mConfirm = "确定"})
+  const FZSimpleDialog(this.mTitle, this.mMsg,
+      {Key key,
+      this.mOnClickListener,
+      this.mCancel = "取消",
+      this.mConfirm = "确定",
+      this.orientation = portrait})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var height = Utils.getInstance().getScreenWidth(context) * 184.0 / 375;
+    var height = 0.0;
+    if (orientation == portrait) {
+      height = Utils.getInstance().getScreenWidth(context) * 184.0 / 375;
+    } else {
+      height = Utils.getInstance().getScreenHeight(context) * 184.0 / 375;
+    }
+
     var width = height * 1.5;
     var buttonWidth = width * 0.35;
     var buttonHeight = buttonWidth * 0.4;
