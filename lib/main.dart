@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () {
           if (routeName == MyApp.Router_DemoNavigation) {
             showNavigationDialog(routeName);
-          } if (routeName == MyApp.Router_DemoAnim) {
+          } else if (routeName == MyApp.Router_DemoAnim) {
             showAnimDialog();
           } else {
             Navigator.pushNamed(context, routeName);
