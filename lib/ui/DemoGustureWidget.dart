@@ -1,3 +1,4 @@
+import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,8 @@ class DemoGustureWidget extends StatefulWidget {
 }
 
 class DemoGustureState extends State<DemoGustureWidget> {
-  static const platform = MethodChannel('com.milo.flutterapp.flutter/EventBusMethodCallHandler');
+  static const platform =
+      MethodChannel('com.milo.flutterapp.flutter/EventBusMethodCallHandler');
 
   String log = "";
   double moveX = 0;
@@ -94,26 +96,32 @@ class DemoGustureState extends State<DemoGustureWidget> {
   }
 
   _printLog(String log) {
-    try {
-      platform.invokeMethod('click');
-    } on PlatformException catch (e) {}
-
     setState(() {
       this.log = log;
     });
+
+    invokeMethod("click");
   }
 
   _doMove(x, y) {
-    try {
-      platform.invokeMethod('move');
-    } on PlatformException catch (e) {}
     setState(() {
       moveX += x;
       moveY += y;
     });
+
+    invokeMethod("move");
   }
 
-
+  void invokeMethod(String event) async {
+    try {
+      String result = await platform.invokeMethod(event);
+      if ("success" == result) {
+        FZLog.d("事件记录");
+      } else {
+        FZLog.d("事件没有被记录");
+      }
+    } on PlatformException catch (e) {}
+  }
 }
 
 // step0 : 展示效果
