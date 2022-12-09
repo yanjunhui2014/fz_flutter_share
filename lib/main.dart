@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _itemButton(String title, String routeName) {
     return Container(
-      child: RaisedButton(
+      child: RawMaterialButton(
         onPressed: () {
           if (routeName == MyApp.Router_DemoNavigation) {
             showNavigationDialog(routeName);
