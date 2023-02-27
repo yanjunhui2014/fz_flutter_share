@@ -25,17 +25,17 @@ class DemoNetworkState extends State<DemoNetworkWidget> {
         ),
         body: Column(
           children: <Widget>[
-            RawMaterialButton(
+            TextButton(
                 child: Text("请求数据 - 常规"),
                 onPressed: () {
                   doGetByNetManager();
                 }),
-            RawMaterialButton(
+            TextButton(
                 child: Text("请求数据 - ResponseForJoke"),
                 onPressed: () {
                   doGetByNetManagerWithResponseForJoke();
                 }),
-            RawMaterialButton(
+            TextButton(
                 child: Text("请求数据 - PluginEntity"),
                 onPressed: () {
                   doGetByNetManagerWithResponseFromPluginEntity();

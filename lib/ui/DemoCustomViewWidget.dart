@@ -45,7 +45,7 @@ class DemoCustomViewState extends State<DemoCustomViewWidget> {
               width: 100,
               height: 20,
             ),
-            RawMaterialButton(
+            TextButton(
               onPressed: () {
                 startProgress();
               },
@@ -55,7 +55,7 @@ class DemoCustomViewState extends State<DemoCustomViewWidget> {
               width: 100,
               height: 50,
             ),
-            RawMaterialButton(
+            TextButton(
               onPressed: () {
                 showCustomDialog();
               },

@@ -28,7 +28,7 @@ class DemoDebugWidgetState extends State<DemoDebugWidgetWidget> {
           children: <Widget>[
             Text("123*321的计算结果是?"),
             Text(_result == 0 ? "" : _result.toString()),
-            RawMaterialButton(
+            TextButton(
               onPressed: () {
                 startCalculation();
               },

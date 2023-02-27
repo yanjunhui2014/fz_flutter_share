@@ -33,7 +33,7 @@ class DemoLandscpeState extends State<DemoLandscpeWidget> {
       body: Container(
         child: Column(
           children: <Widget>[
-            RawMaterialButton(
+            TextButton(
               onPressed: () {
                 showCustomDialog();
               },
