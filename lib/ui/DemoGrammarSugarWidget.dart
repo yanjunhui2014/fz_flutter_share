@@ -10,11 +10,11 @@ class DemoGrammarSugarWidget extends StatefulWidget {
 }
 
 class DemoGrammarSugarState extends State {
-  GrammarSugarPeople _people = null;
-  // GrammarSugarPeople _people = new GrammarSugarPeople()
-  //   ..userName = 'LiLei'
-  //   ..age = '100'
-  //   ..sign = 'Hello HanMeiMei';
+  // GrammarSugarPeople _people = null;
+  GrammarSugarPeople _people = new GrammarSugarPeople()
+    ..userName = 'LiLei'
+    ..age = '100'
+    ..sign = 'Hello HanMeiMei';
 
   Map map = {
     'userName': 'Milo',
@@ -50,7 +50,7 @@ class DemoGrammarSugarState extends State {
         ));
   }
 
-  item(String key, String value) {
+  item(String key, String? value) {
     return Row(
       children: <Widget>[Text(key + ":"), Text(value ?? '暂无')],
     );

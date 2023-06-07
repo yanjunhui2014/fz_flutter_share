@@ -1,12 +1,9 @@
 import 'dart:convert';
 
-import 'package:ShareDemo/data/bean/ResponseForJoke.dart';
-import 'package:ShareDemo/data/bean/ResponseFromPluginEntity.dart';
-import 'package:ShareDemo/data/bean/joke_bean_entity.dart';
-import 'package:ShareDemo/generated/json/base/json_convert_content.dart';
 import 'package:ShareDemo/utils/FZLog.dart';
 import 'package:dio/dio.dart';
 
+import '../data/bean/jork_bean_entity.dart';
 import 'net_callback.dart';
 import 'net_config.dart';
 
@@ -15,7 +12,7 @@ class NetManager with NetConfig {
   factory NetManager() => _getInstance();
 
   static NetManager get instance => _getInstance();
-  static NetManager _instance;
+  static NetManager? _instance;
 
   NetManager._();
 
@@ -23,10 +20,10 @@ class NetManager with NetConfig {
     if (_instance == null) {
       _instance = NetManager._();
     }
-    return _instance;
+    return _instance!;
   }
 
-  void queryJokeData(NetCallback<JokeBeanResult> netCallback) async {
+  void queryJokeData(NetCallback<JorkBeanEntity> netCallback) async {
     Dio dio = new Dio();
     Options options = dio.options;
     options.baseUrl = "http://v.juhe.cn";
@@ -50,8 +47,7 @@ class NetManager with NetConfig {
 
     Map<String, dynamic> map = jsonDecode(result);
     if (map["error_code"] == 0) {
-      JokeBeanResult result =
-          JsonConvert.fromJsonAsT<JokeBeanResult>(map['result']);
+      JorkBeanEntity result = JorkBeanEntity.fromJson(map['result']);
       netCallback.onSuccess(result);
     } else {
       netCallback.onFail(Exception(map["reason"]));
@@ -59,7 +55,7 @@ class NetManager with NetConfig {
   }
 
   void queryJokeDataWithResponseForJoke(
-      NetCallback<ResponseForJokeResult> netCallback) async {
+      NetCallback<JorkBeanEntity> netCallback) async {
     Dio dio = new Dio();
     Options options = dio.options;
     options.baseUrl = "http://v.juhe.cn";
@@ -77,8 +73,7 @@ class NetManager with NetConfig {
 
     Map<String, dynamic> map = jsonDecode(result);
     if (map["error_code"] == 0) {
-      ResponseForJokeResult result =
-          ResponseForJokeResult.fromJson(map['result']);
+      JorkBeanEntity result = JorkBeanEntity.fromJson(map['result']);
       netCallback.onSuccess(result);
     } else {
       netCallback.onFail(Exception(map["reason"]));
@@ -86,7 +81,7 @@ class NetManager with NetConfig {
   }
 
   void queryJokeDataWithResponseFromPluginEntity(
-      NetCallback<ResponseFromPluginResult> netCallback) async {
+      NetCallback<JorkBeanEntity> netCallback) async {
     Dio dio = new Dio();
     Options options = dio.options;
     options.baseUrl = "http://v.juhe.cn";
@@ -104,8 +99,7 @@ class NetManager with NetConfig {
 
     Map<String, dynamic> map = jsonDecode(result);
     if (map["error_code"] == 0) {
-      ResponseFromPluginResult result =
-          JsonConvert.fromJsonAsT<ResponseFromPluginResult>(map['result']);
+      JorkBeanEntity result = JorkBeanEntity.fromJson(map['result']);
       netCallback.onSuccess(result);
     } else {
       netCallback.onFail(Exception(map["reason"]));

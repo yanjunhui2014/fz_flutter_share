@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DemoNavigationTargetWidget extends StatefulWidget {
   final String pageFrom;
 
-  DemoNavigationTargetWidget({this.pageFrom});
+  DemoNavigationTargetWidget({required this.pageFrom});
 
   @override
   State<StatefulWidget> createState() {
@@ -14,11 +14,11 @@ class DemoNavigationTargetWidget extends StatefulWidget {
 }
 
 class DemoNavigationTargetState extends State<DemoNavigationTargetWidget> {
-  String _arguments;
+  String? _arguments;
 
   @override
   Widget build(BuildContext context) {
-    _arguments = (ModalRoute.of(context).settings.arguments ?? "无") as String;
+    _arguments = (ModalRoute.of(context)?.settings.arguments ?? "无") as String;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +29,7 @@ class DemoNavigationTargetState extends State<DemoNavigationTargetWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text("跳转来源：" + widget.pageFrom ?? '未知'),
-            Text("想说的:" + _arguments)
+            Text("想说的:" + _arguments!)
           ],
         ),
       ),

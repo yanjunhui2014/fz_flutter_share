@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 ///代码调试演示
 class DemoDebugWidgetWidget extends StatefulWidget {
-  final String pageFrom;
+  final String? pageFrom;
 
   DemoDebugWidgetWidget({this.pageFrom});
 

@@ -1,8 +1,8 @@
 
 class GrammarSugarPeople{
 
-  String userName;
-  String age;
-  String sign;
+  String? userName;
+  String? age;
+  String? sign;
 
 }

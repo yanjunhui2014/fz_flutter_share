@@ -59,13 +59,13 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: routers,
-      home: MyHomePage(title: 'Flutter Demo'),
+      home: MyHomePage(key:UniqueKey(), title: 'Flutter Demo'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> showNavigationDialog(String routeName) async {
     FZLog.d(" showNavigationDialog ");
-    int i = await showDialog<int>(
+    int? i = await showDialog<int>(
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> showAnimDialog() async {
     FZLog.d(" showAnimDialog ");
-    int i = await showDialog<int>(
+    int? i = await showDialog<int>(
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(

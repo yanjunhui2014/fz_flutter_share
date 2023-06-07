@@ -19,8 +19,8 @@ class FZSimpleDialog extends Dialog {
   final SimpleDialogOnClickListener mOnClickListener;
 
   const FZSimpleDialog(this.mTitle, this.mMsg,
-      {Key key,
-      this.mOnClickListener,
+      {required Key key,
+        required this.mOnClickListener,
       this.mCancel = "取消",
       this.mConfirm = "确定",
       this.orientation = portrait})

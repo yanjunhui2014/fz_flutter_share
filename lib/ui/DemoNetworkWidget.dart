@@ -1,6 +1,4 @@
-import 'package:ShareDemo/data/bean/ResponseForJoke.dart';
-import 'package:ShareDemo/data/bean/ResponseFromPluginEntity.dart';
-import 'package:ShareDemo/data/bean/joke_bean_entity.dart';
+import 'package:ShareDemo/data/bean/jork_bean_entity.dart';
 import 'package:ShareDemo/net/net_callback.dart';
 import 'package:ShareDemo/net/net_manager.dart';
 import 'package:flutter/material.dart';
@@ -48,10 +46,10 @@ class DemoNetworkState extends State<DemoNetworkWidget> {
   }
 
   void doGetByNetManager() {
-    NetManager.instance.queryJokeData(new NetCallback<JokeBeanResult>(
-        onSuccess: (JokeBeanResult response) {
+    NetManager.instance.queryJokeData(new NetCallback<JorkBeanEntity>(
+        onSuccess: (JorkBeanEntity response) {
           setState(() {
-            text = response.data[count++ % 10].content;
+            text = response.result.data[count++ % 10].content;
           });
         },
         onFail: (Exception e) {}));
@@ -59,10 +57,10 @@ class DemoNetworkState extends State<DemoNetworkWidget> {
 
   void doGetByNetManagerWithResponseForJoke() {
     NetManager.instance.queryJokeDataWithResponseForJoke(
-        new NetCallback<ResponseForJokeResult>(
-            onSuccess: (ResponseForJokeResult response) {
+        new NetCallback<JorkBeanEntity>(
+            onSuccess: (JorkBeanEntity response) {
               setState(() {
-                text = response.data[count++ % 10].content;
+                text = response.result.data[count++ % 10].content;
               });
             },
             onFail: (Exception e) {}));
@@ -70,10 +68,10 @@ class DemoNetworkState extends State<DemoNetworkWidget> {
 
   void doGetByNetManagerWithResponseFromPluginEntity() {
     NetManager.instance.queryJokeDataWithResponseFromPluginEntity(
-        new NetCallback<ResponseFromPluginResult>(
+        new NetCallback<JorkBeanEntity>(
             onSuccess: (response) {
               setState(() {
-                text = response.data[count++ % 10].content;
+                text = response.result.data[count++ % 10].content;
               });
             },
             onFail: (e) {}));

@@ -52,6 +52,7 @@ class DemoLandscpeState extends State<DemoLandscpeWidget> {
           return FZSimpleDialog(
             "是真的嘛",
             '大罗使我们村最靓的仔',
+            key:UniqueKey(),
             mConfirm: "真的",
             mCancel: "假的",
             orientation: FZSimpleDialog.landscape,

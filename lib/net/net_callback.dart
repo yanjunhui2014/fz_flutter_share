@@ -5,7 +5,7 @@ class NetCallback<T> {
   OnSuccess<T> onSuccess;
   OnFail onFail;
 
-  NetCallback({this.onSuccess, this.onFail});
+  NetCallback({required this.onSuccess, required this.onFail});
 }
 
 

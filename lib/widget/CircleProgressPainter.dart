@@ -14,7 +14,7 @@ class CircleProgressPainter extends CustomPainter {
   final double width;
   final double height;
 
-  Paint mPaint;
+  late Paint mPaint;
 
   final PI = 3.1415926; //flutter中 ， PI = 180（android）
 

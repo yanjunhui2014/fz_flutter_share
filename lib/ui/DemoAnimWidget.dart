@@ -59,7 +59,7 @@ class DemoAnimGifState extends State<DemoAnimWidget> {
 ///动画-lottie演示
 class DemoAnimLottieState extends State<DemoAnimWidget>
     with TickerProviderStateMixin {
-  AnimationController _lottieController;
+  late AnimationController _lottieController;
 
   @override
   void dispose() {
@@ -133,7 +133,7 @@ class DemoAnimLottieState extends State<DemoAnimWidget>
 ///动画-系统动画演示
 class DemoAnimSyatemState extends State<DemoAnimWidget>
     with TickerProviderStateMixin {
-  AnimationController transAnimController;
+  late AnimationController transAnimController;
   double transAnimValue = 0.0;
 
   double screenWidth = 0.0;
